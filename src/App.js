@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
+import Modal from "./components/Modal"; 
 
 function App() {
+  const [open, setOpen] = useState(false);
   // state for input
   const [task, setTask] = useState("");
   // state for todo list
@@ -78,6 +80,14 @@ function App() {
           </li>
         ))}
       </ul>
+      <h1>Step 4: React Portal Example</h1>
+      <button onClick={() => setOpen(true)}>Open Modal</button>
+
+      {open && (
+        <Modal onClose={() => setOpen(false)}>
+          <h2>Hello, I am a Modal rendered via Portal!</h2>
+        </Modal>
+      )}
     </div>
   );
 }
