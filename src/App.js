@@ -1,16 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function App() {
   // state for input
   const [task, setTask] = useState("");
   // state for todo list
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(() => {
+    const saved = localStorage.getItem('todos');
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  // Save to localStorage whenever todos change
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos));
+  }, [todos]);
 
   // Add task to todos
   const addTodo = () => {
     if (task.trim() === "") return; // ignore empty
-    setTodos([...todos, { text: task, completed: false }]); // add new task
-    setTask(""); // clear input
+    setTodos([...todos, { text: task, completed: false }]);
+    setTask("");
   };
 
   // Delete task
