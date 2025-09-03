@@ -1,19 +1,29 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TodoInput from "./components/TodoInput";
 import TodoList from "./components/TodoList";
 import Modal from "./components/Modal";
 
 function App() {
-  const [todos, setTodos] = useState([]);
+  // ✅ Initialize state from localStorage (runs only once)
+  const [todos, setTodos] = useState(() => {
+    const stored = localStorage.getItem("todos");
+    return stored ? JSON.parse(stored) : [];
+  });
+
   const [modalOpen, setModalOpen] = useState(false);
   const [todoToDelete, setTodoToDelete] = useState(null);
+
+  // ✅ Save todos to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   const addTodo = (text) => {
     setTodos([...todos, { text, completed: false }]);
   };
 
   const confirmDelete = (index) => {
-    setTodoToDelete(index); // store which todo is to be deleted
+    setTodoToDelete(index);
     setModalOpen(true);
   };
 
@@ -34,7 +44,7 @@ function App() {
 
   return (
     <div>
-      <h1>Todo App (with Delete Confirmation Modal)</h1>
+      <h1>Todo App (with Modal + localStorage ✅ Fixed)</h1>
       <TodoInput onAdd={addTodo} />
       <TodoList todos={todos} onDelete={confirmDelete} onToggle={toggleTodo} />
 
