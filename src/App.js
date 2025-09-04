@@ -6,6 +6,7 @@ import FormDemo from "./components/FormDemo";
 import UseRefDemo from "./components/UseRefDemo";
 import MemoDemo from "./components/memo";
 import CallbackDemo from "./components/useCallback";
+import JobApplicationForm from "./components/JobApplicationForm";
 
 function App() {
   // ✅ Initialize state from localStorage (runs only once)
@@ -59,10 +60,11 @@ function App() {
           <button onClick={() => setModalOpen(false)}>Cancel</button>
         </Modal>
       )}
-      {/* <FormDemo />
+      <FormDemo />
       <UseRefDemo/>
-      <MemoDemo/> */}
+      <MemoDemo/>
       <CallbackDemo/>
+      <JobApplicationForm />
     </div>
   );
 }
