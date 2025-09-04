@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import TodoInput from "./components/TodoInput";
 import TodoList from "./components/TodoList";
 import Modal from "./components/Modal";
+import FormDemo from "./components/FormDemo";
 
 function App() {
   // ✅ Initialize state from localStorage (runs only once)
@@ -55,6 +56,7 @@ function App() {
           <button onClick={() => setModalOpen(false)}>Cancel</button>
         </Modal>
       )}
+      <FormDemo />
     </div>
   );
 }
