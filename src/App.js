@@ -7,6 +7,7 @@ import UseRefDemo from "./components/UseRefDemo";
 import MemoDemo from "./components/memo";
 import CallbackDemo from "./components/useCallback";
 import JobApplicationForm from "./components/JobApplicationForm";
+import AutoBatchingDemo from "./components/renderUpdate";
 
 function App() {
   // ✅ Initialize state from localStorage (runs only once)
@@ -65,6 +66,7 @@ function App() {
       <MemoDemo/>
       <CallbackDemo/>
       <JobApplicationForm />
+      <AutoBatchingDemo />
     </div>
   );
 }
